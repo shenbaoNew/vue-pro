@@ -4,10 +4,11 @@ import App from "./App.vue"
 
 //导入样式
 import "./lib/mui/css/mui.min.css"
+import "./lib/mui/css/icons-extra.css"
 
 //按需导入mint UI 组件
 import { Header } from 'mint-ui'
-Vue.component(Header.name, Header);
+Vue.component(Header.name, Header)
 
 new Vue({
   el: "#app",
