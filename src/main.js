@@ -1,6 +1,9 @@
 //入口文件
 import Vue from "vue"
 import App from "./App.vue"
+import VueRouter from "vue-router"
+
+Vue.use(VueRouter)
 
 //导入样式
 import "./lib/mui/css/mui.min.css"
@@ -10,7 +13,10 @@ import "./lib/mui/css/icons-extra.css"
 import { Header } from 'mint-ui'
 Vue.component(Header.name, Header)
 
+import router from "./router.js"
+
 new Vue({
   el: "#app",
-  render: c => c(App)
+  render: c => c(App),
+  router
 })
