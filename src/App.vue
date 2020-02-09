@@ -4,6 +4,7 @@
     <mt-header fixed title="固定在顶部"></mt-header>
 
     <!-- 中间路由区域 -->
+    <router-view></router-view>
 
     <!-- 底部切换tab区域 -->
     <nav class="mui-bar mui-bar-tab">
@@ -26,7 +27,6 @@
         <span class="mui-tab-label">搜索</span>
       </router-link>
     </nav>
-    <h1>abc</h1>
   </div>
 </template>
 
