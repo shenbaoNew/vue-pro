@@ -14,7 +14,22 @@ module.exports = {
     open: true,
     port: 3000,
     contentBase: 'src',
-    hot: true
+    hot: true,
+    //添加代理设置
+    proxy: {
+      //匹配代理的url
+      '/api': {
+        // 目标服务器地址
+        //不可用：http://vue.studyit.io
+        //可用：http://www.liulongbin.top:3005
+        //自己搭建的node：http://localhost:3080/api/getlunbo
+        target: 'http://localhost:3080',
+        //路径重写
+        //如果请求路径为 api/art/1 ,就会转换成 http://localhost/art/1
+        //pathRewrite: { '^/api': '' },
+        changeOrigin: true
+      }
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
