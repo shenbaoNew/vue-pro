@@ -4,6 +4,7 @@ import SearchContainer from "./components/tabbar/SearchContainer.vue"
 import MemberContainer from "./components/tabbar/MemberContainer.vue"
 import ShopcarContainer from "./components/tabbar/ShopcarContainer.vue"
 import NewsList from "./components/news/NewsList.vue"
+import NewsContent from "./components/news/NewsContent.vue"
 
 let router = new VueRouter({
   routes: [
@@ -19,6 +20,9 @@ let router = new VueRouter({
     },
     {
       path: '/home/newslist', component: NewsList
+    },
+    {
+      path: '/home/newslist/:id', component: NewsContent
     }
   ],
   linkActiveClass: 'mui-active'

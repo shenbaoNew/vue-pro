@@ -3,6 +3,7 @@ import Vue from "vue"
 import App from "./App.vue"
 import VueRouter from "vue-router"
 import VueResource from "vue-resource"
+import Moment from "moment"
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
@@ -18,6 +19,11 @@ Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 
 import router from "./router.js"
+
+//定义全局过滤器
+Vue.filter('dateFormate', function (datastr, pattern = "YYYY-MM-DD HH:mm:ss") {
+  return Moment(datastr).format(pattern);
+})
 
 new Vue({
   el: "#app",
