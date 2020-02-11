@@ -23,7 +23,8 @@ module.exports = {
         //不可用：http://vue.studyit.io
         //可用：http://www.liulongbin.top:3005
         //自己搭建的node：http://localhost:3080/api/getlunbo
-        target: 'http://localhost:3080',
+        //自己搭建额asp.net.core web api: http://localhost:5000/api/getlunbo
+        target: 'http://localhost:5000',
         //路径重写
         //如果请求路径为 api/art/1 ,就会转换成 http://localhost/art/1
         //pathRewrite: { '^/api': '' },
