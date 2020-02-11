@@ -1,5 +1,6 @@
 <template>
   <div class="newsinfo-container">
+    <!-- 标题区 -->
     <h1 class="title">{{newsInfo.title}}</h1>
     <p class="subtitle">
       <span>发表时间:{{newsInfo.postTime|dateFormate}}</span>
@@ -7,17 +8,26 @@
     </p>
     <hr />
 
+    <!-- 内容区 -->
     <div class="content" v-html="newsInfo.content"></div>
+
+    <!-- 评论区 -->
+    <comment-box :id="id"></comment-box>
   </div>
 </template>
 
 <script>
+import Comment from "../subcomponents/Comment.vue";
+
 export default {
   data() {
     return {
       id: this.$route.params.id,
-      newsInfo: {title:'',postTime:'',click:0,content:''}
+      newsInfo: { title: "", postTime: "", click: 0, content: "" }
     };
+  },
+  components: {
+    "comment-box": Comment
   },
   created() {
     this.getNewsInfo();
