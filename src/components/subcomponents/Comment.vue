@@ -2,10 +2,10 @@
   <div class="cmt-container">
     <h3>发表评论</h3>
     <hr />
-    <textarea placeholder="请输入评论内容"></textarea>
-    <mt-button type="primary" size="large">发表评论</mt-button>
+    <textarea placeholder="请输入评论内容" v-model="comment"></textarea>
+    <mt-button type="primary" size="large" @click="postComment">发表评论</mt-button>
     <div class="cmt-list">
-      <div class="cmt-item" v-for="(item,i) in commentList" :key="item.postTime">
+      <div class="cmt-item" v-for="(item,i) in commentList" :key="item.id">
         <div
           class="cmt-title"
         >第{{i}}楼 &nbsp;&nbsp;用户:{{item.userName}}&nbsp;&nbsp;发表时间:{{item.postTime|dateFormate}}</div>
@@ -22,7 +22,8 @@ export default {
   data() {
     return {
       commentList: [],
-      pageIndex: 1
+      pageIndex: 1,
+      comment: ""
     };
   },
   props: ["id"],
@@ -45,6 +46,26 @@ export default {
     getMore() {
       this.pageIndex++;
       this.getComments();
+    },
+    postComment() {
+if(this.comment.trim()==""){
+  Toast("请输入评论内容");
+  return;
+}
+
+      let commentObj = {
+        content: this.comment,
+        userName: "testuser",
+        emulateJSON:true
+      };
+      this.$http.post(`/api/postcomment/${this.id}`, commentObj).then(r => {
+        if (r.body.status === "success") {
+          this.commentList.unshift(commentObj);
+          console.log(this.commentList)
+        } else {
+          Toast("发表评论失败");
+        }
+      });
     }
   }
 };
