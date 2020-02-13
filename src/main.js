@@ -12,12 +12,18 @@ Vue.use(VueResource)
 import "./lib/mui/css/mui.min.css"
 import "./lib/mui/css/icons-extra.css"
 
+/* 为了显示懒加载Lazyload的小图标，不能按需导入，因为这样懒加载小图标显示不出来，需要全部导入
 //按需导入mint UI 组件
-import { Header, Swipe, SwipeItem, Button } from 'mint-ui'
+import { Header, Swipe, SwipeItem, Button, Lazyload } from 'mint-ui'
 Vue.component(Header.name, Header);
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
 Vue.component(Button.name, Button);
+Vue.use(Lazyload);
+*/
+import MintUI from 'mint-ui'
+import 'mint-ui/lib/style.css'
+Vue.use(MintUI)
 
 import router from "./router.js"
 
