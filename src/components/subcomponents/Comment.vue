@@ -48,20 +48,20 @@ export default {
       this.getComments();
     },
     postComment() {
-if(this.comment.trim()==""){
-  Toast("请输入评论内容");
-  return;
-}
+      if (this.comment.trim() == "") {
+        Toast("请输入评论内容");
+        return;
+      }
 
       let commentObj = {
         content: this.comment,
         userName: "testuser",
-        emulateJSON:true
+        emulateJSON: true
       };
       this.$http.post(`/api/postcomment/${this.id}`, commentObj).then(r => {
         if (r.body.status === "success") {
           this.commentList.unshift(commentObj);
-          console.log(this.commentList)
+          console.log(this.commentList);
         } else {
           Toast("发表评论失败");
         }

@@ -25,6 +25,10 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
 
+//安装图片预览插件
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)
+
 import router from "./router.js"
 
 //定义全局过滤器

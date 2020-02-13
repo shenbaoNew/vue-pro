@@ -42,6 +42,24 @@
   2. 获取图片分类
   3. 制作图片列表
     a.制作图片列表链接时，需要tag属性
+  4. 制作图表详情页面
+    a.制作缩略图功能 使用vue-preview插件
+    这里遇到了小图显示异常的问题 ，需要添加一段样式 
+    .thumbs {
+    .imgPrev {
+      .my-gallery {
+        figure {
+          display: inline-block;
+          margin: 6px;
+        }
+        img {
+          width: 80px;
+          height: 60px;
+        }
+      }
+    }
+    }
+    并且要把scoped去掉
   #### 
   ### 会员组件
   ### 购物车组件
