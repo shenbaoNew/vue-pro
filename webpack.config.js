@@ -11,6 +11,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
+    host: '192.168.17.149',
     open: true,
     port: 3000,
     contentBase: 'src',

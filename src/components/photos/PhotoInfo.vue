@@ -1,6 +1,6 @@
 <template>
   <div class="photoinfo-container">
-    <h3>{{photoInfo.title}}</h3>
+    <h1>{{photoInfo.title}}</h1>
     <p class="subtitle">
       <span>发表时间:{{photoInfo.postTime|dateFormate}}</span>
       <span>点击:{{photoInfo.click}}次</span>
@@ -64,7 +64,7 @@ export default {
 <style lang="scss">
 .photoinfo-container {
   padding: 3px;
-  h3 {
+  h1 {
     color: #26f;
     font-size: 16px;
     text-align: center;
