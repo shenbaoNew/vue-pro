@@ -1,52 +1,49 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item">
-      <img src="http://n.sinaimg.cn/news/518/w311h207/20200103/87fa-imrkkfx1541172.jpg" alt />
-      <h1 class="title">古典美女</h1>
+    <div class="goods-item" v-for="item in list" :key = "item.id">
+      <img :src="item.imgUrl" />
+      <h1 class="title">{{item.title}}</h1>
       <div class="info">
         <p class="price">
-          <span class="new">999</span>
-          <span class="old">1099</span>
+          <span class="new">{{item.price}}</span>
+          <span class="old">{{item.oldPrice}}</span>
         </p>
         <p class="sales">
-          <span>热卖中</span>
-          <span>剩余20件</span>
+          <span>{{item.memo}}</span>
+          <span>剩余{{item.stockQty}}件</span>
         </p>
       </div>
     </div>
-    <div class="goods-item">
-      <img src="http://n.sinaimg.cn/news/518/w311h207/20200103/87fa-imrkkfx1541172.jpg" alt />
-      <h1 class="title">古典美女古典美女古典美女古典美女古典美女</h1>
-      <div class="info">
-        <p class="price">
-          <span class="new">999</span>
-          <span class="old">1099</span>
-        </p>
-        <p class="sales">
-          <span>热卖中</span>
-          <span>剩余20件</span>
-        </p>
-      </div>
-    </div>
-    <div class="goods-item">
-      <img src="http://n.sinaimg.cn/news/518/w311h207/20200103/87fa-imrkkfx1541172.jpg" alt />
-      <h1 class="title">古典美女</h1>
-      <div class="info">
-        <p class="price">
-          <span class="new">999</span>
-          <span class="old">1099</span>
-        </p>
-        <p class="sales">
-          <span>热卖中</span>
-          <span>剩余20件</span>
-        </p>
-      </div>
-    </div>
+
+    <mt-button type="danger" size = "large" @click="loadMore">加载更多</mt-button>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      list:[],
+      pageIndex:1
+    }
+  },
+  created(){
+    this.getGoodsInfo();
+  },
+  methods: {
+    getGoodsInfo(){
+      this.$http.get("/api/getgoodslist?index="+this.pageIndex).then(r=>{
+        if(r.body.status==="success"){
+          this.list = this.list.concat( r.body.data);
+        }
+      })
+    },
+    loadMore(){
+      this.pageIndex++;
+      this.getGoodsInfo();
+    }
+  },
+};
 </script>
 
 <style lang="scss" scoped>
