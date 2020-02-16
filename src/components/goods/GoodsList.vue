@@ -1,6 +1,12 @@
 <template>
   <div class="goods-list">
-    <div class="goods-item" v-for="item in list" :key = "item.id">
+    <router-link
+      class="goods-item"
+      v-for="item in list"
+      :key="item.id"
+      :to="'/home/goodsinfo/' + item.id"
+      tag="div"
+    >
       <img :src="item.imgUrl" />
       <h1 class="title">{{item.title}}</h1>
       <div class="info">
@@ -13,9 +19,9 @@
           <span>剩余{{item.stockQty}}件</span>
         </p>
       </div>
-    </div>
+    </router-link>
 
-    <mt-button type="danger" size = "large" @click="loadMore">加载更多</mt-button>
+    <mt-button type="danger" size="large" @click="loadMore">加载更多</mt-button>
   </div>
 </template>
 
@@ -23,26 +29,33 @@
 export default {
   data() {
     return {
-      list:[],
-      pageIndex:1
-    }
+      list: [],
+      pageIndex: 1
+    };
   },
-  created(){
+  created() {
     this.getGoodsInfo();
   },
   methods: {
-    getGoodsInfo(){
-      this.$http.get("/api/getgoodslist?index="+this.pageIndex).then(r=>{
-        if(r.body.status==="success"){
-          this.list = this.list.concat( r.body.data);
+    getGoodsInfo() {
+      this.$http.get("/api/getgoodslist?index=" + this.pageIndex).then(r => {
+        if (r.body.status === "success") {
+          this.list = this.list.concat(r.body.data);
         }
-      })
+      });
     },
-    loadMore(){
+    loadMore() {
       this.pageIndex++;
       this.getGoodsInfo();
+    },
+    goDetail(id) {
+      //采用js的方式实现跳转（除了通过router-link）
+      //this.$router.push("home")
+      this.$router.push("/home/goodsinfo/" + id); //使用div标签然后绑定click事件，依然可以这样跳转
+      this.$router.push({ name: "goodsinfo", params: { id } });
+      //这里要区分开$route(里面有params和query)和$router(实现导航跳转(push,前进，后退))
     }
-  },
+  }
 };
 </script>
 

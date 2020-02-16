@@ -61,7 +61,6 @@ export default {
       this.$http.post(`/api/postcomment/${this.id}`, commentObj).then(r => {
         if (r.body.status === "success") {
           this.commentList.unshift(commentObj);
-          console.log(this.commentList);
         } else {
           Toast("发表评论失败");
         }
