@@ -23,7 +23,7 @@
           </p>
           <p>
             购买数量：
-            <number-box></number-box>
+            <number-box @addCount="getSelectCount" :qty="goodsInfo.stockQty"></number-box>
           </p>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
@@ -60,7 +60,7 @@ export default {
       id: this.$route.params.id,
       lunbotuList: [],
       goodsInfo: {},
-      ballFlag:false
+      ballFlag:false,
     };
   },
   created() {
@@ -96,6 +96,10 @@ export default {
     },
     addToCar(){
       this.ballFlag = !this.ballFlag;
+    },
+    getSelectCount(count){
+      this.selectCount = count;
+      console.log(this.selectCount)
     },
     beforeEnter(el,){
       el.style.transform = "translate(0,0)"  //位移的起点 (0,0)就是原来初始的位置
