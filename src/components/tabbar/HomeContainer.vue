@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- 轮播图 -->
-    <swipe-box :lunbotuList="lunbotuList" :widthfull="true"> </swipe-box>
+    <swipe-box :lunbotuList="lunbotuList" :widthfull="true"></swipe-box>
 
     <!-- 九宫格 -->
     <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -49,7 +49,7 @@
 
 <script>
 import { Toast } from "mint-ui";
-import Lunbotu from "../subcomponents/Lunbotu.vue"
+import Lunbotu from "../subcomponents/Lunbotu.vue";
 
 export default {
   data() {
@@ -72,8 +72,8 @@ export default {
       });
     }
   },
-  components:{
-    'swipe-box':Lunbotu
+  components: {
+    "swipe-box": Lunbotu
   }
 };
 </script>

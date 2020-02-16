@@ -60,7 +60,8 @@ export default {
       id: this.$route.params.id,
       lunbotuList: [],
       goodsInfo: {},
-      ballFlag:false,
+      ballFlag: false,
+      selectCount: 1
     };
   },
   created() {
@@ -91,32 +92,38 @@ export default {
       this.$router.push({ name: "goodsdesc", params: { id: this.id } });
     },
     goComment() {
-      //
       this.$router.push({ name: "goodscomment", params: { id: this.id } });
     },
-    addToCar(){
+    addToCar() {
       this.ballFlag = !this.ballFlag;
+
+      let car = {
+        id: this.id,
+        count: this.selectCount,
+        price: this.goodsInfo.price,
+        select: true
+      };
+      this.$store.commit("addCar", car);
     },
-    getSelectCount(count){
+    getSelectCount(count) {
       this.selectCount = count;
-      console.log(this.selectCount)
     },
-    beforeEnter(el,){
-      el.style.transform = "translate(0,0)"  //位移的起点 (0,0)就是原来初始的位置
+    beforeEnter(el) {
+      el.style.transform = "translate(0,0)"; //位移的起点 (0,0)就是原来初始的位置
     },
-    enter(el,done){
+    enter(el, done) {
       el.offsetWidth;
       //el.style.transform = 'translate(89px, 230px)'  //位移的终点（这个位移最好不要写死，因为不同分辨率可能位置不一样）
       //获取小球在页面中对的位置
-      const ball = this.$refs.ball.getBoundingClientRect();  //小球的位置
+      const ball = this.$refs.ball.getBoundingClientRect(); //小球的位置
       const badge = document.getElementById("badge").getBoundingClientRect(); //徽标的位置
       let flexX = badge.left - ball.left;
       let flexY = badge.top - ball.top;
       el.style.transform = `translate(${flexX}px, ${flexY}px)`;
-      el.style.transition= "all 0.6s cubic-bezier(.4,-0.3,1,.68)";
+      el.style.transition = "all 0.6s cubic-bezier(.4,-0.3,1,.68)";
       done();
-    } ,
-    afterEnter(el){
+    },
+    afterEnter(el) {
       this.ballFlag = !this.ballFlag;
     }
   },

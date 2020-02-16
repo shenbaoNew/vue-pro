@@ -37,7 +37,7 @@ export default {
       this.$http.get("/api/getnewsinfo/" + this.id).then(r => {
         if (r.body.status === "success") {
           this.newsInfo = r.body.data[0];
-          this.comment='';
+          this.comment = "";
         } else {
           Toast("获取新闻内容失败");
         }

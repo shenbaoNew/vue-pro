@@ -2,7 +2,7 @@
   <div>
     <mt-swipe :auto="4000">
       <mt-swipe-item v-for="item in lunbotuList" :key="item.id">
-        <img :src="item.img" :class="{'full':widthfull}"/>
+        <img :src="item.img" :class="{'full':widthfull}" />
       </mt-swipe-item>
     </mt-swipe>
   </div>
@@ -11,13 +11,10 @@
 <script>
 export default {
   data() {
-    return {
-      
-    };
+    return {};
   },
-  props:['lunbotuList','widthfull'],
-  created(){
-  }
+  props: ["lunbotuList", "widthfull"],
+  created() {}
 };
 </script>
 
@@ -26,7 +23,7 @@ export default {
   height: 200px;
 
   .mint-swipe-item {
-    text-align:center;
+    text-align: center;
     img {
       height: 100%;
       //width: 100%;
@@ -34,7 +31,7 @@ export default {
   }
 }
 
-.full{
-  width:100%;
+.full {
+  width: 100%;
 }
 </style>

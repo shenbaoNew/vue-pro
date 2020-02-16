@@ -1,13 +1,14 @@
 <template>
-  <div class="mui-numbox" data-numbox-min="1" :data-numbox-max="qty">
+  <div class="mui-numbox" data-numbox-min="1" data-numbox-max="10" style="height:25px">
     <button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
     <input
       id="test"
       class="mui-input-numbox"
       type="number"
-      value="1"
+      :value="initCount"
       @change="countChanged"
       ref="numbox"
+      readonly
     />
     <button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
   </div>
@@ -19,21 +20,16 @@ export default {
   data() {
     return {};
   },
-  props: ["qty"],
-  watch: {
-    //子组件依赖父组件通过异步获取到的数据，这里要监听，因为一开始是undifined
-    qty: function(newValue, oldValue) {
-      mui(".mui-numbox")
-        .numbox()
-        .setOption("max", newValue);
-    }
-  },
+  props: ["initCount", "id"],
   mounted() {
     mui(".mui-numbox").numbox();
   },
   methods: {
     countChanged() {
-      this.$emit("addCount", parseInt(this.$refs.numbox.value));
+      this.$store.commit("updateCar", {
+        id: this.id,
+        count: parseInt(this.$refs.numbox.value)
+      });
     }
   }
 };

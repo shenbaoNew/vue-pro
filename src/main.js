@@ -30,6 +30,7 @@ import VuePreview from 'vue-preview'
 Vue.use(VuePreview)
 
 import router from "./router.js"
+import store from "./store.js"
 
 //定义全局过滤器
 Vue.filter('dateFormate', function (datastr, pattern = "YYYY-MM-DD HH:mm:ss") {
@@ -39,5 +40,6 @@ Vue.filter('dateFormate', function (datastr, pattern = "YYYY-MM-DD HH:mm:ss") {
 new Vue({
   el: "#app",
   render: c => c(App),
-  router
+  router,
+  store //挂载状态管理对象
 })
